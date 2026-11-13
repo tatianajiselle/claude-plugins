@@ -1,0 +1,10 @@
+{
+  "name": "voiceprint",
+  "version": "0.1.0",
+  "description": "Learns how you write from your own messages and docs, then drafts in your voice",
+  "author": { "name": "Tatiana Ensslin", "url": "https://github.com/tatianajiselle" },
+  "homepage": "https://github.com/tatianajiselle/claude-plugins/tree/main/plugins/voiceprint",
+  "repository": "https://github.com/tatianajiselle/claude-plugins",
+  "license": "MIT",
+  "keywords": ["writing", "voice", "style", "skill"]
+}

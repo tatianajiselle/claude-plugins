@@ -1,0 +1,23 @@
+{
+  "$schema": "https://anthropic.com/claude-code/marketplace.schema.json",
+  "name": "tatianajiselle",
+  "description": "Small Claude Code plugins with personality: mods and skills by Tatiana Ensslin",
+  "owner": {
+    "name": "Tatiana Ensslin",
+    "url": "https://github.com/tatianajiselle"
+  },
+  "plugins": [
+    {
+      "name": "spinner-moods",
+      "description": "Colors and animates the spinner by what Claude is doing: inference, tool calls, or other",
+      "category": "productivity",
+      "source": "./plugins/spinner-moods"
+    },
+    {
+      "name": "voiceprint",
+      "description": "Learns how you write from your own messages and docs, then drafts in your voice",
+      "category": "productivity",
+      "source": "./plugins/voiceprint"
+    }
+  ]
+}

@@ -1,0 +1,11 @@
+{
+  "name": "spinner-moods",
+  "version": "0.2.0",
+  "description": "Colors and animates the spinner by what Claude is doing: inference, tool calls, or other",
+  "author": { "name": "Tatiana Ensslin", "url": "https://github.com/tatianajiselle" },
+  "homepage": "https://github.com/tatianajiselle/claude-plugins/tree/main/plugins/spinner-moods",
+  "repository": "https://github.com/tatianajiselle/claude-plugins",
+  "license": "MIT",
+  "keywords": ["spinner", "terminal", "mod"],
+  "types": "./types/index.d.ts"
+}
