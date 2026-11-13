@@ -4,7 +4,7 @@ Small Claude Code plugins with personality. Built to be fun, made to work.
 
 | Plugin | Type | What it does |
 | --- | --- | --- |
-| [spinner-moods](plugins/spinner-moods) | mod | Colors and animates the spinner by what Claude is doing: thinking, running tools, or something else |
+| [spinner-moods](plugins/spinner-moods) | mod | Colors and animates the spinner by what Claude is doing: inference, running tools, or something else |
 | [voiceprint](plugins/voiceprint) | skill | Learns how you write from your own messages and docs, then drafts in your voice |
 
 ## Install
