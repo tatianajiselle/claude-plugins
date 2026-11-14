@@ -1,6 +1,6 @@
 # spinner-moods
 
-A Claude Code mod that colors and animates the spinner line by what Claude is doing, so you can tell at a glance whether it's thinking, running tools, or doing something else.
+A Claude Code mod that colors and animates the spinner line by what Claude is doing, so you can tell at a glance whether it's thinking, running tools, or doing something else. Pick a theme and palette to make it yours, and it reacts when things go wrong or stall.
 
 | State | Classic color | Classic icons |
 | --- | --- | --- |

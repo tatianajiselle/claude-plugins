@@ -9,7 +9,7 @@
   "plugins": [
     {
       "name": "spinner-moods",
-      "description": "Colors and animates the spinner by what Claude is doing: inference, tool calls, or other",
+      "description": "Colors and animates the spinner by what Claude is doing, with themes, palettes, and little reactions",
       "category": "productivity",
       "source": "./plugins/spinner-moods"
     },
