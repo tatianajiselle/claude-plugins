@@ -51,4 +51,4 @@ Open `/plugin`, pick **spinner-moods**, and change any of these. The spinner upd
 
 The themes and palettes live in `hooks/moods.ts`. Add a row to `THEMES` or `PALETTES` and its key to the matching `options` list in `.claude-plugin/plugin.json`. A color is a name (`red`, `cyan`), a hex value (`#ff8800`), or a theme key (`claude`, `warning`, `success`).
 
-The demo GIF is drawn from `hooks/moods.ts` by `scripts/render-spinner-demo.py` at the repo root, so they always match the real frames. Rerun it after changing a theme (needs Pillow and ffmpeg).
+The demo GIF is drawn from `hooks/moods.ts` by `scripts/render-spinner-demo.py` at the repo root, so it always matches the real frames. Rerun it after changing a theme (needs Pillow and ffmpeg).
