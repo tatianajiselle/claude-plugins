@@ -8,35 +8,36 @@ export const THEMES: Record<string, Record<Mood, string[]>> = {
     inference: ['·', '✢', '✳', '✶', '✻', '✽', '✻', '✶', '✳', '✢'],
     tool: ['◐', '◓', '◑', '◒'],
     other: ['◇', '◈', '◆', '◈'],
-    flustered: ['✗', '✘'],
+    flustered: ['✗', '✘', '✕', '×', '✕', '✘'],
     sleepy: ['z', 'z', 'Z', 'Z'],
   },
   sparkle: {
     inference: ['˚', '⋆', '✧', '✦', '✶', '✦', '✧', '⋆'],
     tool: ['✶', '✷', '✸', '✹', '✺', '✹', '✸', '✷'],
     other: ['⋆', '˚', '⋆', '˚'],
-    flustered: ['✕', '⁎'],
+    flustered: ['✕', '⁎', '✱', '✲', '✱', '⁎'],
     sleepy: ['⋆', '˚', '.', '˚'],
   },
+  // Every hearts frame is two cells wide so the text never shifts.
   hearts: {
-    inference: ['♡', '♡', '♥', '♡'],
-    tool: ['♡', '❥', '♥', '❥'],
-    other: ['♡', '·'],
-    flustered: ['❣', '♥'],
-    sleepy: ['♡', '♡', '♡', '·'],
+    inference: ['· ', '♡ ', '♥ ', '♥ ', '♡ ', '· '],
+    tool: ['♥˙', '♡·', '♥.', '.♡', '·♥', '˙♡'],
+    other: ['♡ ', 'ღ ', '♡ ', '· '],
+    flustered: ['♥ ', ' ♡', '♥ ', ' ♡'],
+    sleepy: ['♡ ', '♡ ', '♡ᶻ', '♡ᶻ'],
   },
   moon: {
     inference: ['◯', '◔', '◑', '◕', '●', '◕', '◑', '◔'],
     tool: ['◐', '◓', '◑', '◒'],
     other: ['○', '◌'],
-    flustered: ['◍', '◌'],
+    flustered: ['◍', '◌', '◎', '○', '◎', '◌'],
     sleepy: ['☾', '☾', '☽', '☽'],
   },
   geometric: {
     inference: ['□', '◧', '◩', '■', '◪', '◨'],
     tool: ['▲', '▶', '▼', '◀'],
     other: ['◇', '◆'],
-    flustered: ['✕', '□'],
+    flustered: ['✕', '□', '⊠', '■', '⊠', '□'],
     sleepy: ['▫', '▫', '▪', '▪'],
   },
 }
@@ -50,7 +51,7 @@ export const PALETTES: Record<string, Record<Mood, string | null>> = {
   mono: { inference: null, tool: null, other: null, flustered: null, sleepy: null },
 }
 
-export const SPEEDS: Record<string, number> = { calm: 200, normal: 120, zippy: 70 }
+export const SPEEDS: Record<string, number> = { calm: 200, normal: 120, zippy: 90 }
 
 export type Details = 'full' | 'time' | 'minimal'
 
