@@ -1,6 +1,8 @@
 # spinner-moods
 
-A Claude Code mod that colors and animates the spinner line by what Claude is doing, so you can tell at a glance whether it's thinking, running tools, or doing something else. Pick a theme and palette to make it yours, and it reacts when things go wrong or stall.
+A Claude Code mod that colors and animates the spinner line by what Claude is doing, so you can tell at a glance whether it's thinking, running tools, or doing something else. When Claude errors, the spinner will shake more violently and turn red.
+
+Pick a theme and palette to make it yours! 
 
 ![A tour of every theme and palette](assets/themes.gif)
 
