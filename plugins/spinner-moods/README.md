@@ -2,7 +2,7 @@
 
 A Claude Code mod that colors and animates the spinner line by what Claude is doing, so you can tell at a glance whether it's thinking, running tools, or doing something else.
 
-| State | Color | Icon animation |
+| State | Classic color | Classic icons |
 | --- | --- | --- |
 | Inference (thinking, requesting, responding) | magenta | `· ✢ ✳ ✶ ✻ ✽` pulse |
 | Tool calls (writing tool input, running a tool) | cyan | `◐ ◓ ◑ ◒` spin |
@@ -28,6 +28,23 @@ From a shell:
 claude plugin install spinner-moods --marketplace tatianajiselle/claude-plugins
 ```
 
-## Customize
+## Make it yours
 
-Edit the `STYLES` table in `hooks/register.tsx`. A color is a name (`red`, `cyan`), a hex value (`#ff8800`), or a theme key (`claude`, `warning`, `success`). `frames` is the list of icons the animation cycles through.
+Open `/plugin`, pick **spinner-moods**, and change any of these. The spinner updates right away.
+
+| Option | Choices |
+| --- | --- |
+| **Theme** | `classic` ✢ ◐ ◇ · `sparkle` ⋆ ✧ ✦ · `hearts` ♡ ♥ · `moon` ◔ ◑ ◕ · `geometric` ◧ ▲ ◆ |
+| **Palette** | `classic` · `pastel` · `neon` · `cozy` · `mono` (your terminal's own text color) |
+| **Speed** | `calm` · `normal` · `zippy` |
+| **Details** | `full` (time, tokens, effort) · `time` · `minimal` (just the icon and word) |
+| **Reactions** | on or off |
+
+### Reactions
+
+- **Flustered:** after a tool call fails, the spinner turns red (or your palette's alarm color) and wobbles for a few seconds before calming down.
+- **Sleepy:** when nothing has changed for a minute, such as during a slow command or a long wait on the API, the icon dozes and the line adds `zzz`. It wakes up as soon as something happens.
+
+### Going further
+
+The themes and palettes live in `hooks/moods.ts`. Add a row to `THEMES` or `PALETTES` and its key to the matching `options` list in `.claude-plugin/plugin.json`. A color is a name (`red`, `cyan`), a hex value (`#ff8800`), or a theme key (`claude`, `warning`, `success`).

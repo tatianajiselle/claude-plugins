@@ -1,11 +1,47 @@
 {
   "name": "spinner-moods",
-  "version": "0.2.0",
-  "description": "Colors and animates the spinner by what Claude is doing: inference, tool calls, or other",
+  "version": "0.3.0",
+  "description": "Colors and animates the spinner by what Claude is doing, with themes, palettes, and little reactions",
   "author": { "name": "Tatiana Ensslin", "url": "https://github.com/tatianajiselle" },
   "homepage": "https://github.com/tatianajiselle/claude-plugins/tree/main/plugins/spinner-moods",
   "repository": "https://github.com/tatianajiselle/claude-plugins",
   "license": "MIT",
-  "keywords": ["spinner", "terminal", "mod"],
-  "types": "./types/index.d.ts"
+  "keywords": ["spinner", "terminal", "mod", "themes"],
+  "types": "./types/index.d.ts",
+  "userConfig": {
+    "theme": {
+      "type": "string",
+      "title": "Theme",
+      "description": "The icons the spinner animates: classic ✢ ◐ ◇, sparkle ⋆ ✧ ✦, hearts ♡ ♥, moon ◔ ◑ ◕, geometric ◧ ▲ ◆.",
+      "default": "classic",
+      "options": ["classic", "sparkle", "hearts", "moon", "geometric"]
+    },
+    "palette": {
+      "type": "string",
+      "title": "Palette",
+      "description": "Colors for thinking, tools, and everything else: classic, pastel, neon, cozy, or mono (your terminal's own text color).",
+      "default": "classic",
+      "options": ["classic", "pastel", "neon", "cozy", "mono"]
+    },
+    "speed": {
+      "type": "string",
+      "title": "Speed",
+      "description": "How fast the icon animates.",
+      "default": "normal",
+      "options": ["calm", "normal", "zippy"]
+    },
+    "details": {
+      "type": "string",
+      "title": "Details",
+      "description": "What follows the word: full (time, tokens, effort), time only, or minimal (nothing).",
+      "default": "full",
+      "options": ["full", "time", "minimal"]
+    },
+    "reactions": {
+      "type": "boolean",
+      "title": "Reactions",
+      "description": "Get flustered for a few seconds after a failed tool call, and sleepy when nothing has happened for a minute.",
+      "default": true
+    }
+  }
 }

@@ -1,23 +1,19 @@
 import { atom, read, update } from 'claude-code'
-import type { Register } from 'claude-code'
+import type { Register, Timer } from 'claude-code'
 
 import type { TurnStats } from '../types'
+import { PALETTES, SPEEDS, THEMES, pick } from './moods'
+import type { Details, Mood } from './moods'
 
-type Activity = 'inference' | 'tool' | 'other'
-
-const STYLES: Record<Activity, { color: string; frames: string[] }> = {
-  inference: { color: 'magenta', frames: ['·', '✢', '✳', '✶', '✻', '✽', '✻', '✶', '✳', '✢'] },
-  tool: { color: 'cyan', frames: ['◐', '◓', '◑', '◒'] },
-  other: { color: 'yellow', frames: ['◇', '◈', '◆', '◈'] },
-}
-
-const EMPTY: TurnStats = { doneTokens: 0, liveChars: 0, effort: null }
+const EMPTY: TurnStats = { doneTokens: 0, liveChars: 0, effort: null, flustered: false }
 const stats = atom({ plugin: 'spinner-moods', key: 'stats' } as const, EMPTY)
 
 const CHARS_PER_TOKEN = 4
 const WRITE_EVERY_CHARS = 40
+const FLUSTERED_MS = 4000
+const SLEEPY_AFTER_MS = 60_000
 
-function activityOf(mode: string, message: string | null): Activity {
+function moodOf(mode: string, message: string | null): Mood {
   if (message) return 'other'
   if (mode === 'tool-use' || mode === 'tool-input') return 'tool'
   if (mode === 'thinking' || mode === 'requesting' || mode === 'responding') return 'inference'
@@ -28,7 +24,14 @@ function formatTokens(n: number): string {
   return n >= 1000 ? `${(n / 1000).toFixed(1)}k` : `${n}`
 }
 
-export const register: Register = on => {
+export const register: Register = (on, options) => {
+  const theme = pick(THEMES, options.theme, 'classic')
+  const palette = pick(PALETTES, options.palette, 'classic')
+  const tickMs = pick(SPEEDS, options.speed, 'normal')
+  const details: Details = options.details === 'time' || options.details === 'minimal' ? options.details : 'full'
+  const reactions = options.reactions !== false
+  let calmDown: Timer | undefined
+
   on('turn.start', async ($, e, next) => {
     if (e.agentId === undefined) await update($, stats, () => EMPTY)
     return next(e)
@@ -58,19 +61,46 @@ export const register: Register = on => {
     }
   })
 
+  // A failed tool call flusters the spinner for a few seconds.
+  on('tool.call', async ($, e, next) => {
+    const r = await next(e)
+    if (reactions && e.agentId === undefined && r.isError) {
+      await update($, stats, s => ({ ...s, flustered: true }))
+      calmDown?.cancel()
+      calmDown = $.clock.after(FLUSTERED_MS, () => {
+        void update($, stats, s => ({ ...s, flustered: false }))
+      })
+    }
+    return r
+  }).catch(($, e, next) => next(e))
+
   on('ui.render', { component: 'Spinner' }, async ($, e, next) => {
     if (e.surface !== 'terminal') return next(e)
     const { Client } = $.ui.resolve(e)
     const { word, message, suffix, mode } = e.props
-    const { color, frames } = STYLES[activityOf(mode, message)]
     const s = await read($, stats)
+    const mood: Mood = s.flustered ? 'flustered' : moodOf(mode, message)
     const tokens = s.doneTokens + Math.round(s.liveChars / CHARS_PER_TOKEN)
-    const extras = [tokens > 0 ? `↓ ~${formatTokens(tokens)} tokens` : null, s.effort].filter(Boolean).join(' · ')
+    const extras = details === 'full'
+      ? [tokens > 0 ? `↓ ~${formatTokens(tokens)} tokens` : null, s.effort].filter(Boolean).join(' · ')
+      : ''
     return (
       <Client
         key="line"
         module="./spinner-icon.tsx"
-        props={{ color, frames, text: `${message ?? word}${suffix}`, extras }}
+        props={{
+          mood,
+          color: palette[mood],
+          frames: theme[mood],
+          sleepy: reactions && mood !== 'flustered'
+            ? { color: palette.sleepy, frames: theme.sleepy, afterMs: SLEEPY_AFTER_MS }
+            : null,
+          text: `${message ?? word}${suffix}`,
+          extras,
+          progress: tokens,
+          tickMs,
+          showTime: details !== 'minimal',
+        }}
       />
     )
   })
