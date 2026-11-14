@@ -141,7 +141,7 @@ SCENES = {
         ('flustered', 'Brewing', 2.6, 'uh oh, the tool failed: flustered', 0),
         ('tool', 'Brewing', 2.0, 'deep breath, trying again…', 0),
         ('sleepy', 'Brewing', 5.2, 'a whole minute with no progress: sleepy', 55_000),
-        ('inference', 'Pondering', 2.6, 'and it wakes right back up', 0),
+        ('tool', 'Brewing', 2.6, 'and it wakes right back up', 0),
     ])],
 }
 
