@@ -2,7 +2,7 @@
 
 A Claude Code mod that colors and animates the spinner line by what Claude is doing, so you can tell at a glance whether it's thinking, running tools, or doing something else. Pick a theme and palette to make it yours, and it reacts when things go wrong or stall.
 
-![spinner-moods in moon + pastel: thinking, running a tool, flustered after an error, sleepy, then awake](assets/story.gif)
+![A tour of every theme and palette](assets/themes.gif)
 
 | State | Classic color | Classic icons |
 | --- | --- | --- |
@@ -42,8 +42,6 @@ Open `/plugin`, pick **spinner-moods**, and change any of these. The spinner upd
 | **Details** | `full` (time, tokens, effort) · `time` · `minimal` (just the icon and word) |
 | **Reactions** | on or off |
 
-![A tour of every theme and palette](assets/themes.gif)
-
 ### Reactions
 
 - **Flustered:** after a tool call fails, the spinner turns red (or your palette's alarm color) and wobbles for a few seconds before calming down.
@@ -53,4 +51,4 @@ Open `/plugin`, pick **spinner-moods**, and change any of these. The spinner upd
 
 The themes and palettes live in `hooks/moods.ts`. Add a row to `THEMES` or `PALETTES` and its key to the matching `options` list in `.claude-plugin/plugin.json`. A color is a name (`red`, `cyan`), a hex value (`#ff8800`), or a theme key (`claude`, `warning`, `success`).
 
-The demo GIFs are drawn from `hooks/moods.ts` by `scripts/render-spinner-demo.py` at the repo root, so they always match the real frames. Rerun it after changing a theme (needs Pillow and ffmpeg).
+The demo GIF is drawn from `hooks/moods.ts` by `scripts/render-spinner-demo.py` at the repo root, so they always match the real frames. Rerun it after changing a theme (needs Pillow and ffmpeg).
