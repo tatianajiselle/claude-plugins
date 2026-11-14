@@ -29,4 +29,4 @@ MIT. Each plugin carries its own `LICENSE`.
 
 ---
 
-Made by Tatiana Ensslin · [@tensslin](https://x.com/tatianajiselle)
+Made by Tatiana Ensslin · [@tatianajiselle](https://x.com/tatianajiselle)
