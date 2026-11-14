@@ -27,7 +27,7 @@ export const THEMES: Record<string, Record<Mood, string[]>> = {
     sleepy: ['♡ ', '♡ ', '♡ᶻ', '♡ᶻ'],
   },
   moon: {
-    inference: ['◯', '◔', '◑', '◕', '●', '◕', '◑', '◔'],
+    inference: ['○', '◔', '◑', '◕', '●'],
     tool: ['◐', '◓', '◑', '◒'],
     other: ['○', '◌'],
     flustered: ['◍', '◌', '◎', '○', '◎', '◌'],
