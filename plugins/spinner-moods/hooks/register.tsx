@@ -61,18 +61,23 @@ export const register: Register = (on, options) => {
     }
   })
 
-  // A failed tool call flusters the spinner for a few seconds.
-  on('tool.call', async ($, e, next) => {
-    const r = await next(e)
-    if (reactions && e.agentId === undefined && r.isError) {
-      await update($, stats, s => ({ ...s, flustered: true }))
-      calmDown?.cancel()
-      calmDown = $.clock.after(FLUSTERED_MS, () => {
-        void update($, stats, s => ({ ...s, flustered: false }))
-      })
-    }
-    return r
-  }).catch(($, e, next) => next(e))
+  // A failed tool call flusters the spinner for a few seconds. It watches tool
+  // results as they reach the transcript rather than hooking `tool.call`, so
+  // the mod never sits in a tool call's path (Code Mode refuses mods that do).
+  if (reactions) {
+    on('session.append', { door: 'tool-result' }, async ($, e, next) => {
+      const r = await next(e)
+      const failed = e.message.content.some(b => b.type === 'tool_result' && b.is_error === true)
+      if (e.agentId === undefined && failed) {
+        await update($, stats, s => ({ ...s, flustered: true }))
+        calmDown?.cancel()
+        calmDown = $.clock.after(FLUSTERED_MS, () => {
+          void update($, stats, s => ({ ...s, flustered: false }))
+        })
+      }
+      return r
+    }).catch(($, e, next) => next(e))
+  }
 
   on('ui.render', { component: 'Spinner' }, async ($, e, next) => {
     if (e.surface !== 'terminal') return next(e)

@@ -17,6 +17,20 @@ function text(node: any): string {
   return (Array.isArray(kids) ? kids : [kids]).map(text).join('')
 }
 
+// A tool's result as the engine appends it to the transcript.
+const toolResult = ({ isError = false, agentId }: { isError?: boolean; agentId?: string } = {}) =>
+  ({
+    message: {
+      type: 'user',
+      role: 'user',
+      content: [{ type: 'tool_result', tool_use_id: 'toolu_1', content: 'boom', is_error: isError }],
+    },
+    door: 'tool-result',
+    origin: { kind: 'tool', tool: 'Bash' },
+    uuid: crypto.randomUUID(),
+    ...(agentId === undefined ? {} : { agentId }),
+  }) as never
+
 describe('spinner-moods', () => {
   test('classic theme by default: magenta thinking, cyan tools', async $ => {
     const ui = await mount($, THINKING)
@@ -62,12 +76,18 @@ describe('spinner-moods', () => {
 
   test('a failed tool call flusters, then calms down', async ($, on) => {
     const clock = mock.clock(on)
-    on('tool.call', async () => ({ result: 'boom', isError: true }) as never)
     const ui = await mount($, TOOL)
-    await $.tool.call({ tool: 'Bash', input: { command: 'false' } } as never)
+    await $.session.append(toolResult({ isError: true }))
     expect((await line(ui)).props.color).toBe('red')
     expect(text(await line(ui))).toMatch(/^[✗✘]/)
     await clock.advance(4_000)
+    expect((await line(ui)).props.color).toBe('cyan')
+  })
+
+  test("a successful result or a subagent's failure stays calm", async $ => {
+    const ui = await mount($, TOOL)
+    await $.session.append(toolResult())
+    await $.session.append(toolResult({ isError: true, agentId: 'a1' }))
     expect((await line(ui)).props.color).toBe('cyan')
   })
 })

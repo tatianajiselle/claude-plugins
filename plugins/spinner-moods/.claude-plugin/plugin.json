@@ -1,6 +1,6 @@
 {
   "name": "spinner-moods",
-  "version": "0.3.1",
+  "version": "0.3.2",
   "description": "Colors and animates the spinner by what Claude is doing, with themes, palettes, and little reactions",
   "author": { "name": "Tatiana Ensslin", "url": "https://github.com/tatianajiselle" },
   "homepage": "https://github.com/tatianajiselle/claude-plugins/tree/main/plugins/spinner-moods",
