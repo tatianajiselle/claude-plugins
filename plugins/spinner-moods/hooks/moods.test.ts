@@ -47,6 +47,18 @@ describe('spinner-moods', () => {
     expect((await line(ui)).props.color).toBe('#f5a9d0')
   })
 
+  test('bloom and bars themes draw their own icons', { options: { theme: 'bars' } }, async $ => {
+    const ui = await mount($, THINKING)
+    expect(text(await line(ui))).toMatch(/^▁ Sauteing/)
+    await ui.redraw(TOOL)
+    expect(text(await line(ui))).toMatch(/^▏ Sauteing/)
+  })
+
+  test('arc theme spins its arc', { options: { theme: 'arc' } }, async $ => {
+    const ui = await mount($, THINKING)
+    expect(text(await line(ui))).toMatch(/^◜ Sauteing/)
+  })
+
   test('minimal details shows only the icon and word', { options: { details: 'minimal' } }, async $ => {
     const ui = await mount($, THINKING)
     expect(text(await line(ui))).toBe('· Sauteing…')

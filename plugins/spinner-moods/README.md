@@ -38,7 +38,7 @@ Open `/plugin`, pick **spinner-moods**, and change any of these. The spinner upd
 
 | Option | Choices |
 | --- | --- |
-| **Theme** | `classic` ✢ ◐ ◇ · `sparkle` ⋆ ✧ ✦ · `hearts` ♡ ♥ · `moon` ◔ ◑ ◕ · `geometric` ◧ ▲ ◆ |
+| **Theme** | `classic` ✢ ◐ ◇ · `sparkle` ⋆ ✧ ✦ · `hearts` ♡ ♥ · `moon` ◔ ◑ ◕ · `geometric` ◧ ▲ ◆ · `bloom` ✿ ❀ ❁ · `bars` ▂ ▄ ▆ · `arc` ◜ ◠ ◝ · `squares` ◰ ◳ ◲ |
 | **Palette** | `classic` · `pastel` · `neon` · `cozy` · `mono` (your terminal's own text color) |
 | **Speed** | `calm` · `normal` · `zippy` |
 | **Details** | `full` (time, tokens, effort) · `time` · `minimal` (just the icon and word) |
@@ -52,5 +52,7 @@ Open `/plugin`, pick **spinner-moods**, and change any of these. The spinner upd
 ### Going further
 
 The themes and palettes live in `hooks/moods.ts`. Add a row to `THEMES` or `PALETTES` and its key to the matching `options` list in `.claude-plugin/plugin.json`. A color is a name (`red`, `cyan`), a hex value (`#ff8800`), or a theme key (`claude`, `warning`, `success`).
+
+The `arc` and `squares` frames come from [cli-spinners](https://github.com/sindresorhus/cli-spinners) (MIT).
 
 The demo GIF is drawn from `hooks/moods.ts` by `scripts/render-spinner-demo.py` at the repo root, so it always matches the real frames. Rerun it after changing a theme (needs Pillow and ffmpeg).

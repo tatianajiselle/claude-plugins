@@ -40,6 +40,34 @@ export const THEMES: Record<string, Record<Mood, string[]>> = {
     flustered: ['✕', '□', '⊠', '■', '⊠', '□'],
     sleepy: ['▫', '▫', '▪', '▪'],
   },
+  bloom: {
+    inference: ['·', '✿', '❀', '❁', '✾'],
+    tool: ['✽', '✾', '❀', '❁'],
+    other: ['❀', '❁', '✿', '✾'],
+    flustered: ['✿', '✕', '✿', '✕'],
+    sleepy: ['❀', '❀', '✿', '·'],
+  },
+  bars: {
+    inference: ['▁', '▂', '▃', '▄', '▅', '▆', '▇', '█'],
+    tool: ['▏', '▎', '▍', '▌', '▋', '▊', '▉', '█'],
+    other: ['▂', '▄', '▆', '█'],
+    flustered: ['█', '▁', '█', '▁'],
+    sleepy: ['▃', '▂', '▁', '▁'],
+  },
+  arc: {
+    inference: ['◜', '◠', '◝', '◞', '◡', '◟'],
+    tool: ['◜', '◝', '◞', '◟'],
+    other: ['◟', '◡', '◞', '◝', '◠', '◜'],
+    flustered: ['◠', '◡', '◠', '◡'],
+    sleepy: ['◠', '◡', '◡', '◡'],
+  },
+  squares: {
+    inference: ['◰', '◳', '◲', '◱'],
+    tool: ['◱', '◲', '◳', '◰'],
+    other: ['□', '◰', '◧', '■'],
+    flustered: ['⊠', '□', '⊠', '□'],
+    sleepy: ['■', '◧', '◰', '□'],
+  },
 }
 
 // null draws in the terminal's own text color.
