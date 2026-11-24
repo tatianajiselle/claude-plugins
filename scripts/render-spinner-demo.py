@@ -134,7 +134,8 @@ TOUR_BEATS = [
 ]
 SCENES = {
     'tour': [(t, p, TOUR_BEATS) for t, p in
-             [('classic', 'classic'), ('sparkle', 'neon'), ('hearts', 'pastel'), ('moon', 'cozy'), ('geometric', 'mono')]],
+             [('classic', 'classic'), ('sparkle', 'neon'), ('hearts', 'pastel'), ('moon', 'cozy'), ('geometric', 'mono'),
+              ('bloom', 'pastel'), ('bars', 'neon'), ('arc', 'cozy'), ('squares', 'classic')]],
     'story': [('moon', 'pastel', [
         ('inference', 'Pondering', 3.2, 'thinking…', 0),
         ('tool', 'Brewing', 3.2, 'running a tool…', 0),
